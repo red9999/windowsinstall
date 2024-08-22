@@ -3,6 +3,9 @@ winget install --id=Microsoft.VisualStudioCode -e  ; winget install --id=7zip.7z
 # Set the TaskbarGlomLevel value to 2 to never combine taskbar buttons
 Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "TaskbarGlomLevel" -Value 2
 
+# Set old context menu
+New-Item -Path "HKCU:\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" -Value "" -Force
+
 # Restart Explorer to apply the changes
 Stop-Process -Name explorer -Force
 Start-Process explorer
